@@ -11,6 +11,7 @@ import UIKit
 class GameViewController: UIViewController {
   
   var itemCount = 3
+  var setTime = 0.8
   
   var tempIndexPath: Int?
   
@@ -18,7 +19,7 @@ class GameViewController: UIViewController {
   
   var score: Int = 0 {
     willSet {
-     currentScoreView.scoreText = newValue
+      currentScoreView.scoreText = newValue
     }
   }
   
@@ -33,6 +34,7 @@ class GameViewController: UIViewController {
   var sec = 0
   var nano = 0
   
+  private let backgroundImage = UIImageView()
   private let currentScoreView = CurrentScoreView()
   private let controlView = ControlView()
   
@@ -41,6 +43,7 @@ class GameViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    backgroundViewUI()
     collectionViewUI()
     autolayout()
     collectionView.allowsMultipleSelection = false
@@ -74,7 +77,7 @@ class GameViewController: UIViewController {
   
   private func startTimer() {
     gameTimer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(timeAction), userInfo: nil, repeats: true)
-    itemTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(itemAction), userInfo: nil, repeats: true)
+    itemTimer = Timer.scheduledTimer(timeInterval: setTime, target: self, selector: #selector(itemAction), userInfo: nil, repeats: true)
   }
   
   @objc func timeAction() {
@@ -88,7 +91,11 @@ class GameViewController: UIViewController {
   }
   
   @objc func itemAction() {
-    randomPopUp()
+    if tempIndexPath == 5 {
+      bbongsPopUp()
+    } else {
+      randomPopUp()
+    }
   }
   
   private func makeItemCount() -> [Int] {
@@ -104,7 +111,7 @@ class GameViewController: UIViewController {
     if intIndex == tempIndexPath {
       bbongsPopUp()
     } else {
-      let indexPath = IndexPath(item: intIndex, section: 0)
+      let indexPath = randomIndex()
       collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredVertically)
       bbongsStatus = true
     }
@@ -140,12 +147,25 @@ class GameViewController: UIViewController {
     layout.itemSize = CGSize(width: itemSize, height: itemSize)
     
     collectionView.register(CustomCollectionCell.self, forCellWithReuseIdentifier: CustomCollectionCell.identifier)
-    collectionView.backgroundColor = .white
+    collectionView.backgroundColor = .clear
     collectionView.dataSource = self
+    collectionView.isScrollEnabled = false
+  }
+  
+  private func backgroundViewUI() {
+    backgroundImage.image = UIImage(named: "배경")
+    backgroundImage.contentMode = .scaleToFill
   }
   
   private func autolayout() {
     let guide = view.safeAreaLayoutGuide
+    
+    view.addSubview(backgroundImage)
+    backgroundImage.translatesAutoresizingMaskIntoConstraints = false
+    backgroundImage.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+    backgroundImage.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+    backgroundImage.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+    backgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     
     view.addSubview(currentScoreView)
     currentScoreView.translatesAutoresizingMaskIntoConstraints = false
@@ -167,6 +187,7 @@ class GameViewController: UIViewController {
     collectionView.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
     collectionView.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
     collectionView.bottomAnchor.constraint(equalTo: controlView.topAnchor).isActive = true
+    collectionView.heightAnchor.constraint(equalTo: guide.heightAnchor, multiplier: 0.55).isActive = true
   }
 }
 
@@ -184,17 +205,28 @@ extension GameViewController: UICollectionViewDataSource {
 }
 
 extension GameViewController: CustomCollectionCellDelegate {
+  func actionButton(image: UIImageView) {
+    switch image.image {
+    case UIImage(named: "두더지"):
+      print("dodo")
+    case UIImage(named: "봉쓰"):
+      print("Fire")
+    case UIImage(named: "두더지없음"):
+      print("땡")
+    default:
+      break
+    }
+  }
+  
   func cellChangeAction(isSelected: Bool, cell: CustomCollectionCell) {
     if isSelected {
       if bbongsStatus {
-        cell.imageView.image = UIImage(named: "두더지")
-        cell.contentView.backgroundColor = .red
+        cell.imageView.image = UIImage(named: "봉쓰")
       } else {
         cell.imageView.image = UIImage(named: "두더지")
       }
     } else {
       cell.imageView.image = UIImage(named: "두더지없음")
-      cell.contentView.backgroundColor = .white
     }
   }
   
@@ -203,11 +235,19 @@ extension GameViewController: CustomCollectionCellDelegate {
       let tapIndexPath = collectionView.indexPath(for: cell),
       let selectIndexPath = collectionView.indexPathsForSelectedItems?.first
       else { return }
-    
+
     if tapIndexPath == selectIndexPath {
-      score += 100
+      switch cell.imageView.image {
+      case UIImage(named: "두더지"):
+        score += 100
+      case UIImage(named: "봉쓰"):
+        score = 0
+      default:
+        break
+      }
     } else {
       score -= 100
     }
+    
   }
 }

@@ -10,6 +10,7 @@ import UIKit
 
 protocol CustomCollectionCellDelegate: class {
   func buttonAction(cell: CustomCollectionCell)
+  func actionButton(image: UIImageView)
   func cellChangeAction(isSelected: Bool, cell: CustomCollectionCell)
 }
 
@@ -34,12 +35,13 @@ class CustomCollectionCell: UICollectionViewCell {
     selectButton.addTarget(self, action: #selector(didTabButton), for: .touchUpInside)
   }
   
-  @objc func didTabButton() {
-    delegate?.buttonAction(cell: self)
-  }
-  
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
+  }
+  
+  @objc func didTabButton() {
+    delegate?.buttonAction(cell: self)
+    delegate?.actionButton(image: imageView)
   }
   
   private func baseUI() {
@@ -51,8 +53,6 @@ class CustomCollectionCell: UICollectionViewCell {
     imageView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
     imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
     imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
-//    imageView.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
-//    imageView.heightAnchor.constraint(equalTo: contentView.heightAnchor).isActive = true
     
     contentView.addSubview(selectButton)
     selectButton.translatesAutoresizingMaskIntoConstraints = false

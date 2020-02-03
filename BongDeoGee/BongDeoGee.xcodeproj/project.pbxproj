@@ -15,6 +15,7 @@
 		A605CC1323E6DAF600777436 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = A605CC1223E6DAF600777436 /* Data.swift */; };
 		A605CC1523E6DB6800777436 /* CurrentScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A605CC1423E6DB6800777436 /* CurrentScoreView.swift */; };
 		A605CC1A23E6E48500777436 /* ControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A605CC1923E6E48500777436 /* ControlView.swift */; };
+		A605CC1C23E7B3E500777436 /* FireBongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A605CC1B23E7B3E500777436 /* FireBongViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		A605CC1223E6DAF600777436 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		A605CC1423E6DB6800777436 /* CurrentScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentScoreView.swift; sourceTree = "<group>"; };
 		A605CC1923E6E48500777436 /* ControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlView.swift; sourceTree = "<group>"; };
+		A605CC1B23E7B3E500777436 /* FireBongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBongViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				A605CC0023E6CED700777436 /* GameViewController.swift */,
+				A605CC1B23E7B3E500777436 /* FireBongViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -169,6 +172,7 @@
 			files = (
 				A605CC0123E6CED700777436 /* GameViewController.swift in Sources */,
 				A605CC1523E6DB6800777436 /* CurrentScoreView.swift in Sources */,
+				A605CC1C23E7B3E500777436 /* FireBongViewController.swift in Sources */,
 				A605CBFD23E6CED700777436 /* AppDelegate.swift in Sources */,
 				A605CC1123E6CFAC00777436 /* CustomCollectionCell.swift in Sources */,
 				A605CC1A23E6E48500777436 /* ControlView.swift in Sources */,
