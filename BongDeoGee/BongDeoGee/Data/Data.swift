@@ -7,12 +7,18 @@
 //
 
 import Foundation
+import UIKit
+
+struct Padding {
+  static let padding: CGFloat = 50
+  static let buttonPadding: CGFloat = 20
+}
 
 enum selectStatus {
   case fail, success, bbongs
 }
 
-struct Record {
+struct InfoModel {
   let name: String
   var level: Int
   var scroe: Int

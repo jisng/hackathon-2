@@ -53,6 +53,11 @@ class GameViewController: UIViewController {
   private func controlAction() {
     controlView.startButton.addTarget(self, action: #selector(didControlAction(_:)), for: .touchUpInside)
     controlView.cancelButton.addTarget(self, action: #selector(didControlAction(_:)), for: .touchUpInside)
+    if sec == 30 {
+      itemTimer.invalidate()
+      gameTimer.invalidate()
+      
+    }
   }
   
   @objc func didControlAction(_ button: UIButton) {
