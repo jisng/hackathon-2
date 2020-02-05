@@ -13,6 +13,15 @@ class GameViewController: UIViewController {
   var itemCount = 3
   var setTime = 0.8
   
+  private let randomBounsFrame = [
+    CGRect(x: 60, y: 80, width: 110, height: 110),
+    CGRect(x: 30, y: 150, width: 90, height: 90),
+    CGRect(x: 320, y: 120, width: 100, height: 100),
+    CGRect(x: 260, y: 360, width: 90, height: 90),
+    CGRect(x: 90, y: 700, width: 90, height: 90),
+    CGRect(x: 280, y: 780, width: 100, height: 100)
+  ]
+  
   var tempIndexPath: Int?
   
   var bbongsStatus = false
@@ -31,42 +40,50 @@ class GameViewController: UIViewController {
       currentScoreView.timerText = TimeToString(counter: newValue)
     }
   }
+  
   var sec = 0
   var nano = 0
+  
+  private var isState = true
   
   private let backgroundImage = UIImageView()
   private let currentScoreView = CurrentScoreView()
   private let controlView = ControlView()
+  private var bonusWordImage = UIImageView()
+  private var bonusButton = UIButton()
+  private let misBackgroundView = UIView()
   
   private let layout = UICollectionViewFlowLayout()
   lazy var collectionView = UICollectionView(frame: view.frame, collectionViewLayout: layout)
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    backgroundViewUI()
     collectionViewUI()
     autolayout()
+    backgroundViewUI()
     collectionView.allowsMultipleSelection = false
     controlAction()
   }
   
   private func controlAction() {
     controlView.startButton.addTarget(self, action: #selector(didControlAction(_:)), for: .touchUpInside)
-    controlView.cancelButton.addTarget(self, action: #selector(didControlAction(_:)), for: .touchUpInside)
-    if sec == 30 {
-      itemTimer.invalidate()
-      gameTimer.invalidate()
-      
-    }
   }
   
   @objc func didControlAction(_ button: UIButton) {
     switch button {
     case controlView.startButton:
-      startTimer()
+      if isState {
+        startTimer()
+        controlView.startButton.setImage(UIImage(named: "정지"), for: .normal)
+      } else {
+        stopTimer()
+        controlView.startButton.setImage(UIImage(named: "시작"), for: .normal)
+        controlView.startButton.contentMode = .scaleAspectFit
+        collectionView.visibleCells.forEach { $0.isSelected = false }
+      }
+      isState.toggle()
     default:
-      stopTimer()
-      collectionView.visibleCells.forEach { $0.isSelected = false }
+      break
     }
   }
   
@@ -77,10 +94,10 @@ class GameViewController: UIViewController {
     sec = 0
     nano = 0
     score = 0
-    currentScoreView.timerText = "준비"
+    currentScoreView.timerText = "READY!"
   }
   
-  private func startTimer() {
+  func startTimer() {
     gameTimer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(timeAction), userInfo: nil, repeats: true)
     itemTimer = Timer.scheduledTimer(timeInterval: setTime, target: self, selector: #selector(itemAction), userInfo: nil, repeats: true)
   }
@@ -101,6 +118,14 @@ class GameViewController: UIViewController {
     } else {
       randomPopUp()
     }
+    
+    let temp = [1, 2, 5, 7]
+    if sec % 3 == temp.randomElement() {
+      print(sec)
+      bonusPopUp()
+    } else {
+      bonusButton.isHidden = true
+    }
   }
   
   private func makeItemCount() -> [Int] {
@@ -109,6 +134,12 @@ class GameViewController: UIViewController {
       array.append(i)
     }
     return array
+  }
+  
+  private func bonusPopUp() {
+    guard let tempRandomFrame = randomBounsFrame.randomElement() else { return }
+    bonusButton.frame = tempRandomFrame
+    bonusButton.isHidden = false
   }
   
   private func bbongsPopUp() {
@@ -138,6 +169,36 @@ class GameViewController: UIViewController {
     }
   }
   
+  @objc func bonusButtonDidTap() {
+    score += 300
+    UIView.animate(
+      withDuration: 0.25,
+      delay: 0,
+      options: [.autoreverse],
+      animations: {
+        self.bonusWordImage.alpha = 1
+        self.bonusWordImage.transform = self.bonusWordImage.transform.scaledBy(x: 1.3, y: 1.3)
+        self.bonusWordImage.alpha = 0
+    })
+  }
+  
+  private func backgroundViewUI() {
+    backgroundImage.image = UIImage(named: "배경")
+    backgroundImage.contentMode = .scaleToFill
+    
+    misBackgroundView.backgroundColor = #colorLiteral(red: 0.5560160216, green: 0.1580937134, blue: 0.1131936957, alpha: 1).withAlphaComponent(0.3)
+    misBackgroundView.alpha = 0
+    
+    bonusButton.setImage(UIImage(named: "보너스"), for: .normal)
+    bonusButton.imageView?.contentMode = .scaleAspectFit
+    bonusButton.addTarget(self, action: #selector(bonusButtonDidTap), for: .touchUpInside)
+    view.addSubview(bonusButton)
+    
+    bonusWordImage.image = UIImage(named: "보너스문구")
+    bonusWordImage.contentMode = .scaleAspectFill
+    bonusWordImage.alpha = 0
+  }
+  
   private func collectionViewUI() {
     let itemsInLine: CGFloat = CGFloat(itemCount)
     let spacing:CGFloat = 1
@@ -157,11 +218,6 @@ class GameViewController: UIViewController {
     collectionView.isScrollEnabled = false
   }
   
-  private func backgroundViewUI() {
-    backgroundImage.image = UIImage(named: "배경")
-    backgroundImage.contentMode = .scaleToFill
-  }
-  
   private func autolayout() {
     let guide = view.safeAreaLayoutGuide
     
@@ -172,19 +228,26 @@ class GameViewController: UIViewController {
     backgroundImage.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     backgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     
+    view.addSubview(misBackgroundView)
+    misBackgroundView.translatesAutoresizingMaskIntoConstraints = false
+    misBackgroundView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+    misBackgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+    misBackgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+    misBackgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    
     view.addSubview(currentScoreView)
     currentScoreView.translatesAutoresizingMaskIntoConstraints = false
     currentScoreView.topAnchor.constraint(equalTo: guide.topAnchor).isActive = true
     currentScoreView.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
     currentScoreView.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
-    currentScoreView.heightAnchor.constraint(equalTo: guide.heightAnchor, multiplier: 0.2).isActive = true
+    currentScoreView.heightAnchor.constraint(equalTo: guide.heightAnchor, multiplier: 0.24).isActive = true
     
     view.addSubview(controlView)
     controlView.translatesAutoresizingMaskIntoConstraints = false
     controlView.bottomAnchor.constraint(equalTo: guide.bottomAnchor).isActive = true
     controlView.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
     controlView.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
-    controlView.heightAnchor.constraint(equalTo: guide.heightAnchor, multiplier: 0.2).isActive = true
+    controlView.heightAnchor.constraint(equalTo: guide.heightAnchor, multiplier: 0.16).isActive = true
     
     view.addSubview(collectionView)
     collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -193,6 +256,13 @@ class GameViewController: UIViewController {
     collectionView.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
     collectionView.bottomAnchor.constraint(equalTo: controlView.topAnchor).isActive = true
     collectionView.heightAnchor.constraint(equalTo: guide.heightAnchor, multiplier: 0.55).isActive = true
+    
+    view.addSubview(bonusWordImage)
+    bonusWordImage.translatesAutoresizingMaskIntoConstraints = false
+    bonusWordImage.topAnchor.constraint(equalTo: guide.topAnchor, constant: 120).isActive = true
+    bonusWordImage.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: -100).isActive = true
+    bonusWordImage.widthAnchor.constraint(equalToConstant: 160).isActive = true
+    bonusWordImage.heightAnchor.constraint(equalToConstant: 50).isActive = true
   }
 }
 
@@ -216,7 +286,15 @@ extension GameViewController: CustomCollectionCellDelegate {
       print("dodo")
     case UIImage(named: "봉쓰"):
       print("Fire")
+    case UIImage(named: "보너스"):
+      print("Bonus")
     case UIImage(named: "두더지없음"):
+      if gameTimer.isValid == true {
+        misBackgroundView.alpha = 1
+        UIView.animate(withDuration: 0.3) {
+          self.misBackgroundView.alpha = 0
+        }
+      }
       print("땡")
     default:
       break
@@ -227,12 +305,20 @@ extension GameViewController: CustomCollectionCellDelegate {
     if isSelected {
       if bbongsStatus {
         cell.imageView.image = UIImage(named: "봉쓰")
-      } else {
+        cell.imageView.contentMode = .scaleAspectFit
+      } else   {
         cell.imageView.image = UIImage(named: "두더지")
+        cell.imageView.contentMode = .scaleAspectFill
       }
     } else {
       cell.imageView.image = UIImage(named: "두더지없음")
+      cell.imageView.contentMode = .scaleAspectFill
     }
+  }
+  
+  func reStartTimer() {
+    gameTimer.fire()
+    itemTimer.fire()
   }
   
   func buttonAction(cell: CustomCollectionCell) {
@@ -240,13 +326,19 @@ extension GameViewController: CustomCollectionCellDelegate {
       let tapIndexPath = collectionView.indexPath(for: cell),
       let selectIndexPath = collectionView.indexPathsForSelectedItems?.first
       else { return }
-
+    
     if tapIndexPath == selectIndexPath {
       switch cell.imageView.image {
       case UIImage(named: "두더지"):
         score += 100
       case UIImage(named: "봉쓰"):
         score = 0
+        gameTimer.invalidate()
+        itemTimer.invalidate()
+        let fireVC = FirebongViewController()
+        fireVC.modalPresentationStyle = .overCurrentContext
+        present(fireVC, animated: false)
+        reStartTimer()
       default:
         break
       }

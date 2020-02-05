@@ -10,11 +10,12 @@ import UIKit
 
 class CurrentScoreView: UIView {
 
-  var timerText: String = "준비" {
+  var timerText: String = "READY!" {
     willSet {
       timerLabel.text = "\(newValue)"
     }
   }
+  
   
   var scoreText: Int = 0 {
     willSet {
@@ -22,6 +23,7 @@ class CurrentScoreView: UIView {
     }
   }
   
+  var scoreImage = UIImageView()
   private let timerLabel = UILabel()
   private let scoreLabel = UILabel()
   
@@ -32,30 +34,40 @@ class CurrentScoreView: UIView {
   
   private func baseUI() {
     timerLabel.text = timerText
-    timerLabel.backgroundColor = .brown
-    timerLabel.font = .systemFont(ofSize: 15, weight: .medium)
+    timerLabel.textColor = #colorLiteral(red: 0.4882019353, green: 0.4882019353, blue: 0.4882019353, alpha: 1)
+    timerLabel.font = .systemFont(ofSize: 32, weight: .bold)
     timerLabel.textAlignment = .center
     
+    scoreImage.image = UIImage(named: "점수판")
+    scoreImage.contentMode = .scaleToFill
+    
     scoreLabel.text = "\(scoreText)"
-    scoreLabel.backgroundColor = .green
-    scoreLabel.font = .systemFont(ofSize: 15, weight: .bold)
+    scoreLabel.textColor = .black
+    scoreLabel.backgroundColor = .clear
+    scoreLabel.font = .systemFont(ofSize: 24, weight: .regular)
     scoreLabel.textAlignment = .center
     
+    self.addSubview(scoreImage)
     self.addSubview(timerLabel)
     self.addSubview(scoreLabel)
     
     timerLabel.translatesAutoresizingMaskIntoConstraints = false
+    scoreImage.translatesAutoresizingMaskIntoConstraints = false
     scoreLabel.translatesAutoresizingMaskIntoConstraints = false
     
-    timerLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
-    timerLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-    timerLabel.trailingAnchor.constraint(equalTo: self.centerXAnchor, constant: -10).isActive = true
+    timerLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 24).isActive = true
+    timerLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+    timerLabel.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
     timerLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3).isActive = true
     
-    scoreLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10).isActive = true
-    scoreLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-    scoreLabel.leadingAnchor.constraint(equalTo: self.centerXAnchor, constant: 10).isActive = true
-    scoreLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3).isActive = true
+    scoreImage.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+    scoreImage.centerYAnchor.constraint(equalTo: scoreLabel.centerYAnchor, constant: -8).isActive = true
+    scoreImage.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.4).isActive = true
+    scoreImage.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.4).isActive = true
+    
+    scoreLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+    scoreLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor,constant: -4).isActive = true
+    scoreLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.2).isActive = true
     
   }
   

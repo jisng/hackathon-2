@@ -107,11 +107,11 @@
 		A605CC1823E6DB7600777436 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				A605CC2723E90B6800777436 /* StartSettingViewController.swift */,
+				A605CC2923E924D200777436 /* MainViewController.swift */,
 				A605CC0023E6CED700777436 /* GameViewController.swift */,
 				A605CC1D23E82FA600777436 /* GameOverViewController.swift */,
 				A605CC1B23E7B3E500777436 /* FireBongViewController.swift */,
-				A605CC2723E90B6800777436 /* StartSettingViewController.swift */,
-				A605CC2923E924D200777436 /* MainViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

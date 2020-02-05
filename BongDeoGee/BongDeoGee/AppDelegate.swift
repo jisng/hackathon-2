@@ -17,10 +17,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     window = UIWindow(frame: UIScreen.main.bounds)
     window?.backgroundColor = .systemBackground
-//    window?.rootViewController = GameViewController()
     window?.rootViewController = StartSettingViewController()
     window?.makeKeyAndVisible()
     
     return true
   }
 }
+
+// 어플 처음 입장 화면 : StartSettingViewController() - 한 번 가입하면 두 번 볼 일 없는 화면
+// 게임 시작 전 메인 화면 : MainViewController()
+// 게임 화면 : GameViewController()
+// 게임 종료 화면 : GameOverViewContorller() - 게임 성공 시 SuccessGameView / 게임 실패 시 FailGameView
+//
+

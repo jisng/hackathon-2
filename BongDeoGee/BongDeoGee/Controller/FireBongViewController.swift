@@ -15,6 +15,7 @@ class FirebongViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+    
         setUI()
         setConstrain()
     }
@@ -24,6 +25,8 @@ class FirebongViewController: UIViewController {
         fireBongAni()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.dismiss(animated: false)
+            guard let gameVc = self.presentingViewController as? GameViewController else { return }
+            gameVc.startTimer()
         }
     }
   

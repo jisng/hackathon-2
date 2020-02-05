@@ -12,7 +12,7 @@ class ControlView: UIView {
   
   let startButton = UIButton()
   let cancelButton = UIButton()
-
+  
   override init(frame: CGRect) {
     super.init(frame: frame)
     baseUI()
@@ -23,33 +23,17 @@ class ControlView: UIView {
   }
   
   private func baseUI() {
-  
-    startButton.setTitle("시작", for: .normal)
-    startButton.backgroundColor = .blue
-    startButton.titleLabel?.font = .systemFont(ofSize: 15, weight: .medium)
-    startButton.titleLabel?.textAlignment = .center
     
-    cancelButton.setTitle("포기", for: .normal)
-    cancelButton.backgroundColor = .red
-    cancelButton.titleLabel?.font = .systemFont(ofSize: 15, weight: .medium)
-    cancelButton.titleLabel?.textAlignment = .center
-    
+    startButton.setImage(UIImage(named: "시작"), for: .normal)
+    startButton.imageView?.contentMode = .scaleAspectFit
     self.addSubview(startButton)
-    self.addSubview(cancelButton)
     
     startButton.translatesAutoresizingMaskIntoConstraints = false
-    cancelButton.translatesAutoresizingMaskIntoConstraints = false
     
-    startButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
+    startButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
     startButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-    startButton.trailingAnchor.constraint(equalTo: self.centerXAnchor, constant: -10).isActive = true
-    startButton.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3).isActive = true
-    
-    cancelButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10).isActive = true
-    cancelButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-    cancelButton.leadingAnchor.constraint(equalTo: self.centerXAnchor, constant: 10).isActive = true
-    cancelButton.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3).isActive = true
-    
+    startButton.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
+    startButton.widthAnchor.constraint(equalTo: startButton.heightAnchor).isActive = true
   }
   
 }
