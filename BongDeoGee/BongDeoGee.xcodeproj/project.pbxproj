@@ -21,6 +21,7 @@
 		A605CC2623E840A000777436 /* FailGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A605CC2523E840A000777436 /* FailGameView.swift */; };
 		A605CC2823E90B6800777436 /* StartSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A605CC2723E90B6800777436 /* StartSettingViewController.swift */; };
 		A605CC2A23E924D200777436 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A605CC2923E924D200777436 /* MainViewController.swift */; };
+		A605CC2C23EBAF8800777436 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A605CC2B23EBAF8800777436 /* LaunchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		A605CC2523E840A000777436 /* FailGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailGameView.swift; sourceTree = "<group>"; };
 		A605CC2723E90B6800777436 /* StartSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartSettingViewController.swift; sourceTree = "<group>"; };
 		A605CC2923E924D200777436 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		A605CC2B23EBAF8800777436 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 				A605CC0023E6CED700777436 /* GameViewController.swift */,
 				A605CC1D23E82FA600777436 /* GameOverViewController.swift */,
 				A605CC1B23E7B3E500777436 /* FireBongViewController.swift */,
+				A605CC2B23EBAF8800777436 /* LaunchViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -193,6 +196,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A605CC2C23EBAF8800777436 /* LaunchViewController.swift in Sources */,
 				A605CC0123E6CED700777436 /* GameViewController.swift in Sources */,
 				A605CC1523E6DB6800777436 /* CurrentScoreView.swift in Sources */,
 				A605CC1C23E7B3E500777436 /* FireBongViewController.swift in Sources */,
