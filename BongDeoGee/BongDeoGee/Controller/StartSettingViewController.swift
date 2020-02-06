@@ -13,7 +13,7 @@ import FirebaseAuth
 class StartSettingViewController: UIViewController {
     // - InfoSettingView ("게임을 시작합니다" / [이름 입력창] / [버튼])
     
-    private var name: String?
+//    private var name: String?
     
     private let inputLabel = UILabel()
     private let inputTextField = UITextField()
@@ -22,39 +22,39 @@ class StartSettingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         Auth.auth().signIn(withEmail: "test@naver.com", password: "123456") { (result, err) in
             if err == nil {
                 print("로그인 성공")
             }
         }
-        
         setUI()
         setLayout()
     }
     
     @objc func didTabOkButton(_ button: UIButton) {
+        let name: String
+        
         guard let txt = inputTextField.text else { return }
         name = txt
-        staticName = name ?? "wrong name"
+        UserDefaults.standard.set(name, forKey: "name")
+        staticName = name
         
         if name == "" {
             alertAction()
         } else {
-            let mainVC = MainViewController(name: name ?? "name123", level: 1, score: 0)
+            let mainVC = MainViewController(name: name, level: 1, score: 0)
             mainVC.modalPresentationStyle = .fullScreen
             present(mainVC, animated: true)
         }
     }
+    
     private func okButtonOrigin() {
         UIView.animate(
             withDuration: 0.1,
             delay: 0,
             animations: {
                 self.okButton.transform = CGAffineTransform(rotationAngle: .zero)
-                
         })
-        
     }
     
     private func okButtonAni() {
@@ -64,7 +64,6 @@ class StartSettingViewController: UIViewController {
             animations: {
                 self.okButton.transform = CGAffineTransform(rotationAngle: .pi / 4)
                 self.okButton.transform = self.okButton.transform.scaledBy(x: 1.2, y: 1.2)
-                
         })
     }
     

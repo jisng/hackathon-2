@@ -26,7 +26,7 @@ class GameOverViewController: UIViewController {
         super.viewDidLoad()
         setUI()
         setLayout()
-        uploadToDatabase()
+//        uploadToDatabase()
     }
     
     init(level: Int, score: Int) {
@@ -37,6 +37,24 @@ class GameOverViewController: UIViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc func didTabButton(_ button: UIButton) {
+        if userScore > UserDefaults.standard.integer(forKey: UserDefault.score) {
+            UserDefaults.standard.set(userScore, forKey: UserDefault.score)
+        } else {
+            
+        }
+        
+        if button == endButton {
+            dismiss(animated: true, completion: nil)
+        } else {
+            if button.backgroundColor == .orange {
+                
+            } else {
+                
+            }
+        }
     }
     
     private func setUI() {
@@ -53,9 +71,11 @@ class GameOverViewController: UIViewController {
         
         endButton.setTitle("종료", for: .normal)
         endButton.backgroundColor = .brown
+        endButton.addTarget(self, action:#selector(didTabButton(_:)), for: .touchUpInside)
         
         startButton.setTitle("재도전/다음 단계", for: .normal)
         startButton.backgroundColor = .orange
+        startButton.addTarget(self, action: #selector(didTabButton(_:)), for: .touchUpInside)
     }
     
     private func setLayout() {
@@ -89,42 +109,42 @@ class GameOverViewController: UIViewController {
         startButton.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant: -Padding.buttonPadding).isActive = true
     }
     
-    private func uploadToDatabase() {
-        
-        let values = ["userName": staticName ?? "noname",
-                                 "userScore": "\(userScore)" ?? "0",
-                                 "userLevel": "\(userLevel)" ?? "0",
-                       ] as [String : Any]
-        
-        
-        Database.database().reference().child("\(staticName)").setValue(values) { (error, ref) in
-            if error != nil {
-                print("Success Upload To Database")
-                print(ref)
-            }
-        }
-        
-        allLoadFromDatabase()
-}
-    
-    private func allLoadFromDatabase() {
-        
-        var upperNameArray: Array<String> = []
-        
-        Database.database().reference().observeSingleEvent(of: .value) { (snapshop) in
-            upperNameArray = snapshop.value as? [String] ?? ["wrongName"]
-            
-        }
-        
-        for name in upperNameArray {
-            Database.database().reference().child(name).observeSingleEvent(of: .value) { (snapshop) in
-            let data = snapshop.value as? [String:Any] ?? ["fail":"fail"]
-            guard let name = data["userName"] as? String else { return }
-            guard let score = data["userScore"] as? String else {return }
-            guard let level = data["userLevel"] as? String else { return }
-            }
-            
-        }
-        
-    }
+    //    private func uploadToDatabase() {
+    //
+    //        let values = ["userName": staticName ?? "noname",
+    //                                 "userScore": "\(userScore)" ?? "0",
+    //                                 "userLevel": "\(userLevel)" ?? "0",
+    //                       ] as [String : Any]
+    //
+    //
+    //        Database.database().reference().child("\(staticName)").setValue(values) { (error, ref) in
+    //            if error != nil {
+    //                print("Success Upload To Database")
+    //                print(ref)
+    //            }
+    //        }
+    //
+    //        allLoadFromDatabase()
+    //}
+    //
+    //    private func allLoadFromDatabase() {
+    //
+    //        var upperNameArray: Array<String> = []
+    //
+    //        Database.database().reference().observeSingleEvent(of: .value) { (snapshop) in
+    //            upperNameArray = snapshop.value as? [String] ?? ["wrongName"]
+    //
+    //        }
+    //
+    //        for name in upperNameArray {
+    //            Database.database().reference().child(name).observeSingleEvent(of: .value) { (snapshop) in
+    //            let data = snapshop.value as? [String:Any] ?? ["fail":"fail"]
+    //            guard let name = data["userName"] as? String else { return }
+    //            guard let score = data["userScore"] as? String else {return }
+    //            guard let level = data["userLevel"] as? String else { return }
+    //            }
+    //
+    //        }
+    //
+    //    }
 }

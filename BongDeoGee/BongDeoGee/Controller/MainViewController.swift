@@ -44,10 +44,6 @@ class MainViewController: UIViewController {
         super.init(nibName: nil, bundle: nil) // xib, storyboard 들어올 경우 받는 곳
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     @objc func didTabStartButton(_ button: UIButton) {
         let gameVC = GameViewController()
         
@@ -71,7 +67,12 @@ class MainViewController: UIViewController {
         nameLabel.font = .systemFont(ofSize: 40)
         nameLabel.textColor = .darkGray
         
-        scoreLabel.text = "게임을 시작하세요!"
+        if UserDefaults.standard.integer(forKey: UserDefault.score) == 0 {
+            scoreLabel.text = "게임을 시작하세요!"
+        } else {
+            scoreLabel.text = "\(UserDefault.score) 점"
+        }
+        
         scoreLabel.font = .systemFont(ofSize: 30)
         
         startButton.setImage(UIImage(named: "게임시작"), for: .normal)
@@ -80,6 +81,7 @@ class MainViewController: UIViewController {
         startButton.addTarget(self, action: #selector(didTabStartButton(_:)), for: .touchUpInside)
         
     }
+    
     private func setLayout() {
         
         let guide = view.safeAreaLayoutGuide
@@ -103,5 +105,9 @@ class MainViewController: UIViewController {
         startButton.centerXAnchor.constraint(equalTo: guide.centerXAnchor).isActive = true
         startButton.heightAnchor.constraint(equalTo: guide.heightAnchor, multiplier: 0.3).isActive = true
         startButton.widthAnchor.constraint(equalTo: guide.widthAnchor, multiplier: 0.65).isActive = true
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }

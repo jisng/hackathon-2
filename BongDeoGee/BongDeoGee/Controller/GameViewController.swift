@@ -34,8 +34,8 @@ class GameViewController: UIViewController {
         }
     }
     
-    var gameTimer = Timer()
-    var itemTimer = Timer()
+    private var gameTimer = Timer()
+    private var itemTimer = Timer()
     
     var counter: Int = 0 {
         willSet {

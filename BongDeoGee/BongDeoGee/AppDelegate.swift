@@ -21,20 +21,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // 1, 2, 3 : 3*3 (08 -> 065 -> 05)
     // 4, 5, 6 : 4*4 (08 -> 065 -> 05)
     // 7, 8, 9 : 5*5 (08 -> 065 -> 05)
-  
-  var window: UIWindow?
-  
-  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     
-    FirebaseApp.configure()
+    var window: UIWindow?
     
-    window = UIWindow(frame: UIScreen.main.bounds)
-    window?.backgroundColor = .systemBackground
-    window?.rootViewController = LaunchViewController()
-    window?.makeKeyAndVisible()
-    
-    return true
-  }
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        FirebaseApp.configure()
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.backgroundColor = .systemBackground
+        if UserDefaults.standard.string(forKey: UserDefault.name) != nil {
+            window?.rootViewController = MainViewController(name: UserDefaults.standard.string(forKey: UserDefault.name)!,
+                                                            level: 0,
+                                                            score: UserDefaults.standard.integer(forKey: UserDefault.score) )
+        } else {
+            window?.rootViewController = LaunchViewController()
+        }
+        window?.makeKeyAndVisible()
+        
+        return true
+    }
 }
 
 // 어플 처음 입장 화면 : StartSettingViewController() - 한 번 가입하면 두 번 볼 일 없는 화면
