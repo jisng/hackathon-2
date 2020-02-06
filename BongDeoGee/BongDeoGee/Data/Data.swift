@@ -20,6 +20,6 @@ enum selectStatus {
 
 struct InfoModel {
   let name: String
-  var level: Int
+  var level: Int // 난이도 하-중-상
   var scroe: Int
 }

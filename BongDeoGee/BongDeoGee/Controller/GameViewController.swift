@@ -11,7 +11,7 @@ import UIKit
 class GameViewController: UIViewController {
     
     var itemCount = 3
-    var setTime = 0.8
+    var setTime = GameSet.level1.interval
     
     private let randomBounsFrame = [
         CGRect(x: 70, y: 80, width: 110, height: 110),
@@ -26,6 +26,7 @@ class GameViewController: UIViewController {
     
     var bbongsStatus = false
     
+    var level = 1
     var score: Int = 0 {
         willSet {
             currentScoreView.scoreText = newValue
@@ -41,7 +42,11 @@ class GameViewController: UIViewController {
         }
     }
     
-    var sec = 0
+    var sec = 0 {
+        willSet {
+            gameOver(time: newValue)
+        }
+    }
     var nano = 0
     
     private var isState = true
@@ -63,6 +68,15 @@ class GameViewController: UIViewController {
         backgroundViewUI()
         collectionView.allowsMultipleSelection = false
         controlAction()
+    }
+    
+    private func gameOver(time: Int) {
+        if time == 10 {
+            let gameOverVC = GameOverViewController(level: level, score: score)
+            gameOverVC.modalPresentationStyle = .overFullScreen
+            present(gameOverVC, animated: false)
+            stopTimer()
+        }
     }
     
     private func controlAction() {
@@ -200,7 +214,6 @@ class GameViewController: UIViewController {
         bonusWordImage.image = UIImage(named: "보너스문구")
         bonusWordImage.contentMode = .scaleAspectFill
         bonusWordImage.alpha = 0
-        
     }
     
     private func collectionViewUI() {
@@ -352,9 +365,7 @@ extension GameViewController: CustomCollectionCellDelegate {
                     animations: {
                         cell.oopsImage.alpha = 0
                         cell.oopsImage.transform = dodeogeeOrigin
-                           })
-            
-                
+                })
             case UIImage(named: "봉쓰"):
                 score = 0
                 gameTimer.invalidate()
