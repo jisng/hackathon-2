@@ -6,6 +6,7 @@
 //  Copyright © 2020 Jisng. All rights reserved.
 //
 import AudioToolbox.AudioServices
+import AVFoundation
 import UIKit
 
 class GameViewController: UIViewController {
@@ -51,6 +52,8 @@ class GameViewController: UIViewController {
     
     private var isState = true
     
+    
+    private var soundEffect = AVAudioPlayer()
     private let backgroundImage = UIImageView()
     private let currentScoreView = CurrentScoreView()
     private let controlView = ControlView()
@@ -70,6 +73,21 @@ class GameViewController: UIViewController {
         controlAction()
     }
     
+    private func BGMPlayer() {
+        let url = Bundle.main.url(forResource: "큰일났어요", withExtension: "mp3")
+        if let url = url {
+            do {
+                soundEffect = try AVAudioPlayer(contentsOf: url)
+                soundEffect.prepareToPlay()
+                soundEffect.play()
+            }
+            catch let error {
+                print(error.localizedDescription)
+            }
+        }
+    }
+
+    
     private func gameOver(time: Int) {
         if time == 10 {
             let gameOverVC = GameOverViewController(level: level, score: score)
@@ -87,10 +105,12 @@ class GameViewController: UIViewController {
         switch button {
         case controlView.startButton:
             if isState {
+                BGMPlayer()
                 startTimer()
                 controlView.startButton.setImage(UIImage(named: "정지"), for: .normal)
             } else {
                 stopTimer()
+                soundEffect.stop()
                 controlView.startButton.setImage(UIImage(named: "시작"), for: .normal)
                 controlView.startButton.contentMode = .scaleAspectFit
                 collectionView.visibleCells.forEach { $0.isSelected = false }

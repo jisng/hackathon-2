@@ -7,6 +7,10 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
+
+var staticName = ""
 
 class MainViewController: UIViewController {
     
@@ -23,6 +27,12 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        Auth.auth().signIn(withEmail: "test@naver.com", password: "123456") { (result, err) in
+            if err == nil {
+                print("로그인 성공")
+            }
+        }
         view.backgroundColor = .systemBackground
         setUI()
         setLayout()

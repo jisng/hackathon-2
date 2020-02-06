@@ -14,12 +14,12 @@ struct Padding {
   static let buttonPadding: CGFloat = 20
 }
 
-enum selectStatus {
-  case fail, success, bbongs
-}
+//enum selectStatus {
+//  case fail, success, bbongs
+//}
 
-struct InfoModel {
-  let name: String
-  var level: Int // 난이도 하-중-상
-  var scroe: Int
-}
+//struct InfoModel {
+//  let name: String
+//  var level: Int // 난이도 하-중-상
+//  var scroe: Int
+//}

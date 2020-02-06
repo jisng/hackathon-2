@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
 
 class GameOverViewController: UIViewController {
     
@@ -24,6 +26,7 @@ class GameOverViewController: UIViewController {
         super.viewDidLoad()
         setUI()
         setLayout()
+        uploadToDatabase()
     }
     
     init(level: Int, score: Int) {
@@ -84,5 +87,44 @@ class GameOverViewController: UIViewController {
         startButton.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor, constant: -Padding.padding).isActive = true
         startButton.leadingAnchor.constraint(equalTo: backgroundView.centerXAnchor, constant: Padding.buttonPadding).isActive = true
         startButton.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant: -Padding.buttonPadding).isActive = true
+    }
+    
+    private func uploadToDatabase() {
+        
+        let values = ["userName": staticName ?? "noname",
+                                 "userScore": "\(userScore)" ?? "0",
+                                 "userLevel": "\(userLevel)" ?? "0",
+                       ] as [String : Any]
+        
+        
+        Database.database().reference().child("\(staticName)").setValue(values) { (error, ref) in
+            if error != nil {
+                print("Success Upload To Database")
+                print(ref)
+            }
+        }
+        
+        allLoadFromDatabase()
+}
+    
+    private func allLoadFromDatabase() {
+        
+        var upperNameArray: Array<String> = []
+        
+        Database.database().reference().observeSingleEvent(of: .value) { (snapshop) in
+            upperNameArray = snapshop.value as? [String] ?? ["wrongName"]
+            
+        }
+        
+        for name in upperNameArray {
+            Database.database().reference().child(name).observeSingleEvent(of: .value) { (snapshop) in
+            let data = snapshop.value as? [String:Any] ?? ["fail":"fail"]
+            guard let name = data["userName"] as? String else { return }
+            guard let score = data["userScore"] as? String else {return }
+            guard let level = data["userLevel"] as? String else { return }
+            }
+            
+        }
+        
     }
 }
