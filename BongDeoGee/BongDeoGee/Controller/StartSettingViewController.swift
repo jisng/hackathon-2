@@ -58,9 +58,9 @@ class StartSettingViewController: UIViewController {
     
     guideLine.backgroundColor = .lightGray
     
-    okButton.setTitle("입장하기", for: .normal)
-    okButton.titleLabel?.font = .systemFont(ofSize: 30)
-    okButton.backgroundColor = .brown
+    okButton.setImage(UIImage(named: "입장"), for: .normal)
+    okButton.imageView?.contentMode = .scaleAspectFit
+    okButton.backgroundColor = .clear
     okButton.addTarget(self, action: #selector(didTabOkButton(_:)), for: .touchUpInside)
   }
   
@@ -72,7 +72,7 @@ class StartSettingViewController: UIViewController {
       $0.translatesAutoresizingMaskIntoConstraints = false
     })
     
-    inputLabel.topAnchor.constraint(equalTo: guide.topAnchor, constant: Padding.padding).isActive = true
+    inputLabel.topAnchor.constraint(equalTo: guide.topAnchor, constant: Padding.padding * 2).isActive = true
     inputLabel.centerXAnchor.constraint(equalTo: guide.centerXAnchor).isActive = true
     
     inputTextField.topAnchor.constraint(equalTo: inputLabel.bottomAnchor, constant: Padding.padding).isActive = true
@@ -85,9 +85,12 @@ class StartSettingViewController: UIViewController {
     guideLine.widthAnchor.constraint(equalTo: inputTextField.widthAnchor, multiplier: 1.2).isActive = true
     
     
-    okButton.topAnchor.constraint(equalTo: guideLine.bottomAnchor, constant: Padding.padding).isActive = true
-    okButton.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: Padding.buttonPadding).isActive = true
-    okButton.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: -Padding.buttonPadding).isActive = true
+    okButton.topAnchor.constraint(equalTo: guideLine.bottomAnchor, constant: Padding.padding * 1.5).isActive = true
+    okButton.centerXAnchor.constraint(equalTo: guide.centerXAnchor).isActive = true
+    okButton.heightAnchor.constraint(equalTo: guide.heightAnchor, multiplier: 0.3).isActive = true
+    okButton.widthAnchor.constraint(equalTo: guide.widthAnchor, multiplier: 0.6).isActive = true
+    
+    
     
   }
   

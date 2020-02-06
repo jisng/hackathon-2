@@ -55,17 +55,18 @@ class MainViewController: UIViewController {
   }
   
   private func setUI() {
-    nameLabel.font = .systemFont(ofSize: 50)
-    nameLabel.textColor = .brown
+    nameLabel.font = .systemFont(ofSize: 40)
+    nameLabel.textColor = .darkGray
     
     levelLabel.text = "LEVEL 1"
-    levelLabel.font = .systemFont(ofSize: 40)
+    levelLabel.font = .systemFont(ofSize: 32)
     
     scoreLabel.text = "게임을 시작하세요!"
     scoreLabel.font = .systemFont(ofSize: 30)
     
-    startButton.setTitle("시작하기", for: .normal)
-    startButton.backgroundColor = .green
+    startButton.setImage(UIImage(named: "게임시작"), for: .normal)
+    startButton.imageView?.contentMode = .scaleAspectFit
+    startButton.backgroundColor = .clear
     startButton.addTarget(self, action: #selector(didTabStartButton(_:)), for: .touchUpInside)
   }
   
@@ -84,7 +85,10 @@ class MainViewController: UIViewController {
     levelLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: Padding.padding).isActive = true
 
     scoreLabel.topAnchor.constraint(equalTo: levelLabel.bottomAnchor, constant: Padding.padding).isActive = true
-    
+   
     startButton.topAnchor.constraint(equalTo: scoreLabel.bottomAnchor, constant: Padding.padding).isActive = true
+    startButton.centerXAnchor.constraint(equalTo: guide.centerXAnchor).isActive = true
+    startButton.heightAnchor.constraint(equalTo: guide.heightAnchor, multiplier: 0.3).isActive = true
+    startButton.widthAnchor.constraint(equalTo: guide.widthAnchor, multiplier: 0.65).isActive = true
   }
 }
