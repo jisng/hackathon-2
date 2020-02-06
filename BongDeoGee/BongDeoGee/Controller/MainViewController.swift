@@ -30,7 +30,6 @@ class MainViewController: UIViewController {
     
     init(name: String, level: Int, score: Int) {
         nameLabel.text = name
-        //    self.level = level
         self.score = score
         super.init(nibName: nil, bundle: nil) // xib, storyboard 들어올 경우 받는 곳
     }
@@ -41,7 +40,18 @@ class MainViewController: UIViewController {
     
     @objc func didTabStartButton(_ button: UIButton) {
         let gameVC = GameViewController()
-        gameVC.setTime = GameSet.level1.interval
+        
+        switch levelView.levelIndex {
+        case 0:
+            gameVC.setTime = GameSet.level1.interval
+        case 1:
+            gameVC.setTime = GameSet.level2.interval
+        case 2:
+            gameVC.setTime = GameSet.level3.interval
+        default:
+            break
+        }
+        
         gameVC.modalPresentationStyle = .fullScreen
         gameVC.modalTransitionStyle = .crossDissolve
         present(gameVC, animated: true)

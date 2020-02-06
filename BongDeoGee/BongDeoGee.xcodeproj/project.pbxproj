@@ -21,6 +21,7 @@
 		A605CC2C23EBAF8800777436 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A605CC2B23EBAF8800777436 /* LaunchViewController.swift */; };
 		A605CC3023EBD2D000777436 /* GameSetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A605CC2F23EBD2D000777436 /* GameSetModel.swift */; };
 		A605CC3423EBE40700777436 /* LevelSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A605CC3323EBE40700777436 /* LevelSelectView.swift */; };
+		A66C066A23EBFE7F0057A733 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A66C066923EBFE7F0057A733 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		A605CC2B23EBAF8800777436 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		A605CC2F23EBD2D000777436 /* GameSetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSetModel.swift; sourceTree = "<group>"; };
 		A605CC3323EBE40700777436 /* LevelSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSelectView.swift; sourceTree = "<group>"; };
+		A66C066923EBFE7F0057A733 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				A605CBFC23E6CED700777436 /* AppDelegate.swift */,
+				A66C066923EBFE7F0057A733 /* GoogleService-Info.plist */,
 				A605CC1623E6DB6E00777436 /* View */,
 				A605CC1823E6DB7600777436 /* Controller */,
 				A605CC1723E6DB7300777436 /* Data */,
@@ -182,6 +185,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A605CC0623E6CED900777436 /* Assets.xcassets in Resources */,
+				A66C066A23EBFE7F0057A733 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
