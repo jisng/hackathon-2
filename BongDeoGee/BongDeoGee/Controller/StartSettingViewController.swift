@@ -22,6 +22,7 @@ class StartSettingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = #colorLiteral(red: 1, green: 0.9623679519, blue: 0.8724053502, alpha: 1)
         Auth.auth().signIn(withEmail: "test@naver.com", password: "123456") { (result, err) in
             if err == nil {
                 print("로그인 성공")
@@ -42,7 +43,7 @@ class StartSettingViewController: UIViewController {
         if name == "" {
             alertAction()
         } else {
-            let mainVC = MainViewController(name: name, level: 1, score: 0)
+            let mainVC = MainViewController(name: name, level: GameSet.level1, score: 0)
             mainVC.modalPresentationStyle = .fullScreen
             present(mainVC, animated: true)
         }
@@ -125,7 +126,6 @@ class StartSettingViewController: UIViewController {
 extension StartSettingViewController: UITextFieldDelegate {
     
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        print("textFieldDidChangeSelection started")
         if textField.text?.isEmpty == true {
             self.okButton.setImage(UIImage(named: "입장"), for: .normal)
             okButtonOrigin()

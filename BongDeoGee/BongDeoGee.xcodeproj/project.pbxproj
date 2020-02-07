@@ -25,8 +25,8 @@
 		A6309A0623EC02080064633E /* RankProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6309A0523EC02080064633E /* RankProvider.swift */; };
 		A6309A0823EC027C0064633E /* RankModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6309A0723EC027C0064633E /* RankModel.swift */; };
 		A66C066A23EBFE7F0057A733 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A66C066923EBFE7F0057A733 /* GoogleService-Info.plist */; };
-		A6E0598623EC25A800AD1092 /* RankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E0598523EC25A800AD1092 /* RankViewController.swift */; };
 		A6E0598823EC3CC700AD1092 /* 큰일났어요.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A6E0598723EC3CC700AD1092 /* 큰일났어요.mp3 */; };
+		A6E0598A23ED3AD600AD1092 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E0598923ED3AD600AD1092 /* TutorialViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,8 +52,8 @@
 		A6309A0523EC02080064633E /* RankProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankProvider.swift; sourceTree = "<group>"; };
 		A6309A0723EC027C0064633E /* RankModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankModel.swift; sourceTree = "<group>"; };
 		A66C066923EBFE7F0057A733 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		A6E0598523EC25A800AD1092 /* RankViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankViewController.swift; sourceTree = "<group>"; };
 		A6E0598723EC3CC700AD1092 /* 큰일났어요.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "큰일났어요.mp3"; sourceTree = "<group>"; };
+		A6E0598923ED3AD600AD1092 /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,9 +145,9 @@
 			children = (
 				A605CC2723E90B6800777436 /* StartSettingViewController.swift */,
 				A605CC2923E924D200777436 /* MainViewController.swift */,
+				A6E0598923ED3AD600AD1092 /* TutorialViewController.swift */,
 				A605CC0023E6CED700777436 /* GameViewController.swift */,
 				A605CC1D23E82FA600777436 /* GameOverViewController.swift */,
-				A6E0598523EC25A800AD1092 /* RankViewController.swift */,
 				A605CC1B23E7B3E500777436 /* FireBongViewController.swift */,
 				A605CC2B23EBAF8800777436 /* LaunchViewController.swift */,
 			);
@@ -295,11 +295,11 @@
 				A605CBFD23E6CED700777436 /* AppDelegate.swift in Sources */,
 				A605CC2823E90B6800777436 /* StartSettingViewController.swift in Sources */,
 				A605CC1E23E82FA600777436 /* GameOverViewController.swift in Sources */,
+				A6E0598A23ED3AD600AD1092 /* TutorialViewController.swift in Sources */,
 				A605CC3423EBE40700777436 /* LevelSelectView.swift in Sources */,
 				A605CC1123E6CFAC00777436 /* CustomCollectionCell.swift in Sources */,
 				A605CC1A23E6E48500777436 /* ControlView.swift in Sources */,
 				A6309A0623EC02080064633E /* RankProvider.swift in Sources */,
-				A6E0598623EC25A800AD1092 /* RankViewController.swift in Sources */,
 				A605CC1323E6DAF600777436 /* Data.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
