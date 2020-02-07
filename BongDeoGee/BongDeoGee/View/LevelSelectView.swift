@@ -52,11 +52,13 @@ class LevelSelectView: UIView {
         levelView2.text = "LEVEL 2"
         levelView3.text = "LEVEL 3"
         
-        previousButton.setTitle("<<", for: .normal)
-        previousButton.backgroundColor = .black
+        previousButton.setImage(UIImage(named: "왼쪽"), for: .normal)
+        previousButton.imageView?.contentMode = .scaleAspectFill
+        previousButton.backgroundColor = .clear
         
-        nextButton.setTitle(">>", for: .normal)
-        nextButton.backgroundColor = .black
+        nextButton.setImage(UIImage(named: "오른쪽"), for: .normal)
+        nextButton.imageView?.contentMode = .scaleAspectFill
+        nextButton.backgroundColor = .clear
         
         previousButton.addTarget(self, action: #selector(didTabButton(_:)), for: .touchUpInside)
         nextButton.addTarget(self, action: #selector(didTabButton(_:)), for: .touchUpInside)
@@ -86,12 +88,16 @@ class LevelSelectView: UIView {
         self.addSubview(previousButton)
         previousButton.translatesAutoresizingMaskIntoConstraints = false
         previousButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        previousButton.trailingAnchor.constraint(equalTo: scroleView.leadingAnchor, constant: -10).isActive = true
+        previousButton.trailingAnchor.constraint(equalTo: scroleView.leadingAnchor, constant: 24).isActive = true
+        previousButton.widthAnchor.constraint(equalToConstant: 56).isActive = true
+        previousButton.heightAnchor.constraint(equalToConstant: 56).isActive = true
         
         self.addSubview(nextButton)
         nextButton.translatesAutoresizingMaskIntoConstraints = false
         nextButton.centerYAnchor.constraint(equalTo: scroleView.centerYAnchor).isActive = true
-        nextButton.leadingAnchor.constraint(equalTo: scroleView.trailingAnchor, constant: 10).isActive = true
+        nextButton.leadingAnchor.constraint(equalTo: scroleView.trailingAnchor, constant: -24).isActive = true
+        nextButton.widthAnchor.constraint(equalToConstant: 56).isActive = true
+        nextButton.heightAnchor.constraint(equalToConstant: 56).isActive = true
     }
 }
 

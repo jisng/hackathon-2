@@ -6,12 +6,16 @@
 //  Copyright © 2020 Jisng. All rights reserved.
 //
 import AudioToolbox.AudioServices
+import AVFoundation
 import UIKit
+
+var levelIdx = 0
 
 class GameViewController: UIViewController {
     
     var itemCount = 3
-    var setTime = GameSet.level1.interval
+    var gameLevel: Double
+    
     
     private let randomBounsFrame = [
         CGRect(x: 70, y: 80, width: 110, height: 110),
@@ -33,8 +37,8 @@ class GameViewController: UIViewController {
         }
     }
     
-    var gameTimer = Timer()
-    var itemTimer = Timer()
+    private var gameTimer = Timer()
+    private var itemTimer = Timer()
     
     var counter: Int = 0 {
         willSet {
@@ -50,7 +54,9 @@ class GameViewController: UIViewController {
     var nano = 0
     
     private var isState = true
+
     
+    private var soundEffect = AVAudioPlayer()
     private let backgroundImage = UIImageView()
     private let currentScoreView = CurrentScoreView()
     private let controlView = ControlView()
@@ -61,6 +67,16 @@ class GameViewController: UIViewController {
     private let layout = UICollectionViewFlowLayout()
     lazy var collectionView = UICollectionView(frame: view.frame, collectionViewLayout: layout)
     
+    init(level: GameSet) {
+        gameLevel = level.interval
+        print(gameLevel)
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionViewUI()
@@ -70,10 +86,40 @@ class GameViewController: UIViewController {
         controlAction()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        reloadData()
+    }
+    
+    private func reloadData() {
+        counter = 00
+        sec = 00
+        nano = 00
+        score = 00
+        controlView.startButton.setImage(UIImage(named: "시작"), for: .normal)
+        currentScoreView.timerText = "READY!"
+        collectionView.reloadData()
+    }
+    
+    private func BGMPlayer() {
+        let url = Bundle.main.url(forResource: "큰일났어요", withExtension: "mp3")
+        if let url = url {
+            do {
+                soundEffect = try AVAudioPlayer(contentsOf: url)
+                soundEffect.prepareToPlay()
+                soundEffect.play()
+            }
+            catch let error {
+                print(error.localizedDescription)
+            }
+        }
+    }
+
+    
     private func gameOver(time: Int) {
-        if time == 10 {
-            let gameOverVC = GameOverViewController(level: level, score: score)
-            gameOverVC.modalPresentationStyle = .overFullScreen
+        if time == 15 {
+            let gameOverVC = GameOverViewController(level: gameLevel, score: score)
+            gameOverVC.modalPresentationStyle = .fullScreen
             present(gameOverVC, animated: false)
             stopTimer()
         }
@@ -87,10 +133,12 @@ class GameViewController: UIViewController {
         switch button {
         case controlView.startButton:
             if isState {
+                BGMPlayer()
                 startTimer()
                 controlView.startButton.setImage(UIImage(named: "정지"), for: .normal)
             } else {
                 stopTimer()
+                soundEffect.stop()
                 controlView.startButton.setImage(UIImage(named: "시작"), for: .normal)
                 controlView.startButton.contentMode = .scaleAspectFit
                 collectionView.visibleCells.forEach { $0.isSelected = false }
@@ -113,7 +161,7 @@ class GameViewController: UIViewController {
     
     func startTimer() {
         gameTimer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(timeAction), userInfo: nil, repeats: true)
-        itemTimer = Timer.scheduledTimer(timeInterval: setTime, target: self, selector: #selector(itemAction), userInfo: nil, repeats: true)
+        itemTimer = Timer.scheduledTimer(timeInterval: gameLevel, target: self, selector: #selector(itemAction), userInfo: nil, repeats: true)
     }
     
     @objc func timeAction() {
@@ -135,7 +183,7 @@ class GameViewController: UIViewController {
         
         let temp = [1, 2, 5, 7]
         if sec % 3 == temp.randomElement() {
-            print(sec)
+//            print(sec)
             bonusPopUp()
         } else {
             bonusButton.isHidden = true
@@ -301,12 +349,14 @@ extension GameViewController: CustomCollectionCellDelegate {
     func actionButton(image: UIImageView) {
         switch image.image {
         case UIImage(named: "두더지"):
-            print("dodo")
+//            print("dodo")
+            break
         case UIImage(named: "봉쓰"):
             vibrate()
-            print("Fire")
+//            print("Fire")
         case UIImage(named: "보너스"):
-            print("Bonus")
+//            print("Bonus")
+            break
         case UIImage(named: "두더지없음"):
             vibrate()
             if gameTimer.isValid == true {
@@ -315,7 +365,7 @@ extension GameViewController: CustomCollectionCellDelegate {
                     self.misBackgroundView.alpha = 0
                 }
             }
-            print("땡")
+//            print("땡")
         default:
             break
         }
