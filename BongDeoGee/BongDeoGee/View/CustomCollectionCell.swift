@@ -19,7 +19,8 @@ class CustomCollectionCell: UICollectionViewCell {
   static let identifier = "cell"
   
   weak var delegate: CustomCollectionCellDelegate?
-  
+ 
+  let oopsImage = UIImageView()
   let imageView = UIImageView()
   private let selectButton = UIButton()
   
@@ -47,12 +48,24 @@ class CustomCollectionCell: UICollectionViewCell {
   private func baseUI() {
     imageView.image = UIImage(named: "두더지없음")
     imageView.contentMode = .scaleAspectFill
+    
     contentView.addSubview(imageView)
     imageView.translatesAutoresizingMaskIntoConstraints = false
     imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
     imageView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
     imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
     imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+    
+    oopsImage.image = UIImage(named: "웁쓰")
+    oopsImage.contentMode = .scaleAspectFill
+    oopsImage.alpha = 0
+    
+    contentView.addSubview(oopsImage)
+    oopsImage.translatesAutoresizingMaskIntoConstraints = false
+    oopsImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 4).isActive = true
+    oopsImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
+    oopsImage.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.5).isActive = true
+    oopsImage.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.3).isActive = true
     
     contentView.addSubview(selectButton)
     selectButton.translatesAutoresizingMaskIntoConstraints = false
