@@ -1,5 +1,45 @@
-# hackathon-2
+# BongDeoGee -> DoDeoGee
 
-두더지 잡기 게임
-<br>
-유경, 지승
+- 해커톤 당시 "BongDeoGee"라는 이름으로 발표했으나, 앱스토어 출시를 위해 이름을 "DoDeeGee"로 변경하였습니다.
+
+- 강사님과 매니저님의 이미지를 도깨비와 보너스 이미지로 교체하였습니다.
+
+## Description
+
+- 낯 익은 캐릭터들(패캠 iOS 강사님, 매니저님)이 나와 유저들(패캠 기수들)에게 흥미를 주며 즐거움을 선사 
+
+- 언제 어디서 튀어나올지 모르는 두더지와, 0점 악마, 보너업스로 긴장감 유발
+
+- 개발 기간: 2020.02.06 ~ 02.07 
+
+- 참여 인원: iOS 2명
+  - [you kyung](https://github.com/wydryd125)
+  - [JISNG](https://github.com/jisng)
+  
+## Using Skills
+
+- Language: Swift
+
+- Framework: UIKit, UIView Animation
+  
+## Implementation
+
+UI를 제외한 나머지 기능을 구현
+
+  - UICollectionView를 사용하여 랜덤으로 두더지가 나올 수 있도록 함
+  
+  - Timer를 사용하여 일정 시간동안 두더지가 레벨 별 다른 속도로 나올 수 있도록 함 (레벨 별 난이도 조절)
+  
+  - UserDefaults에 사용자의 이름, 레벨 별 점수를 나타나도록 함
+
+## 1차 결과
+
+![BongDeoGee 오후 7 07 10](https://user-images.githubusercontent.com/57229970/81282494-319ba700-9096-11ea-8949-ea200f48983a.gif)
+
+## 2차 결과
+
+발표 후 반응이 좋아 앱스토어에 출시까지 계획하고 완성도를 높였습니다.
+
+<img src = "https://github.com/jisng/hackathon-2/blob/master/%EB%85%B9%ED%99%94/2%EC%B0%A8%20%EB%85%B9%ED%99%94.gif"></img>
+
+
