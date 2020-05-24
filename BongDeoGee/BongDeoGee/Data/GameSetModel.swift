@@ -28,8 +28,7 @@ enum GameSet {
         case .level3:   return "Level 3"
         }
     }
-}
-
+} 
 
 class SaveRank {
     

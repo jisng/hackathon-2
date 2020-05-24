@@ -74,43 +74,37 @@ class GameOverViewController: UIViewController {
   private func setUI(level: Double, score: Int) {
     switch userLevel {
     case GameSet.level1.interval:
-      if score < 500 {
-        statusLabel.text = "아쉽네요 재도전!"
-        startButton.setImage(UIImage(named: "재도전"), for: .normal)
-        minusLabel.text = "부족한 점수 : " + "\(1000-userScore)"
-      } else {
-        statusLabel.text = "Wow SUCCESS!!"
-        startButton.setImage(UIImage(named: "다음"), for: .normal)
-      }
-    case GameSet.level2.interval:
-      if score < 4000 {
-        statusLabel.text = "아쉽네요 재도전!"
-        startButton.setImage(UIImage(named: "재도전"), for: .normal)
-      } else {
-        statusLabel.text = "Wow SUCCESS!!"
-        startButton.setImage(UIImage(named: "다음"), for: .normal)
-      }
-    case GameSet.level3.interval:
-      if score < 5000 {
-        statusLabel.text = "아쉽네요 재도전!"
-        startButton.setImage(UIImage(named: "재도전"), for: .normal)
-      } else {
-        statusLabel.text = "Wow SUCCESS!!"
-        startButton.setImage(UIImage(named: "다음"), for: .normal)
-      }
-    default:
-      statusLabel.text = "aa"
-    }
-    
-    switch userLevel {
-    case GameSet.level1.interval:
       levelLabel.text = GameSet.level1.toString
+      if score < 1000 {
+        statusLabel.text = "아쉽네요 재도전!"
+        minusLabel.text = "부족한 점수 : " + "\(1000-userScore)"
+        startButton.setImage(UIImage(named: "재도전"), for: .normal)
+      } else {
+        statusLabel.text = "Wow SUCCESS!!"
+        startButton.setImage(UIImage(named: "다음"), for: .normal)
+      }
     case GameSet.level2.interval:
       levelLabel.text = GameSet.level2.toString
+      if score < 3000 {
+        statusLabel.text = "아쉽네요 재도전!"
+        minusLabel.text = "부족한 점수 : " + "\(3000-userScore)"
+        startButton.setImage(UIImage(named: "재도전"), for: .normal)
+      } else {
+        statusLabel.text = "Wow SUCCESS!!"
+        startButton.setImage(UIImage(named: "다음"), for: .normal)
+      }
     case GameSet.level3.interval:
       levelLabel.text = GameSet.level3.toString
+      if score < 5000 {
+        statusLabel.text = "아쉽네요 재도전!"
+        minusLabel.text = "부족한 점수 : " + "\(5000-userScore)"
+        startButton.setImage(UIImage(named: "재도전"), for: .normal)
+      } else {
+        statusLabel.text = "Wow SUCCESS!!"
+        startButton.setImage(UIImage(named: "다음"), for: .normal)
+      }
     default:
-      break
+      print("이게 무슨 일....")
     }
     
     backgroundView.image = UIImage(named: "결과배경")
@@ -118,7 +112,6 @@ class GameOverViewController: UIViewController {
 
     statusLabel.font = UIFont(name: "BinggraeTaom", size: 40)
     
-//    levelLabel.text = "LEVEL " + String(levelIdx+1)
     levelLabel.font = UIFont(name: "BinggraeTaom", size: 30)
     
     scoreLabel.text = String(userScore)

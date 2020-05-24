@@ -115,7 +115,7 @@ class GameViewController: UIViewController {
   
   
   private func gameOver(time: Int) {
-    if time == 5 {
+    if time == 30 {
       let gameOverVC = GameOverViewController(level: gameLevel, score: score)
       gameOverVC.modalPresentationStyle = .fullScreen
       present(gameOverVC, animated: false)
