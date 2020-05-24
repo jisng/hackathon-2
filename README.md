@@ -42,6 +42,6 @@ UI를 제외한 나머지 기능을 구현
 
 발표 후 반응이 좋아 앱스토어에 출시까지 계획하고 이미지와 이름을 변경하였습니다.
 
-<img src = "https://github.com/jisng/hackathon-2/blob/master/Video/2rec.gif"></img>
+<img src = "https://github.com/jisng/hackathon-2/blob/master/Video/2Rec.gif"></img>
 
 
