@@ -35,6 +35,7 @@ class CurrentScoreView: UIView {
   private func baseUI() {
     timerLabel.text = timerText
     timerLabel.textColor = #colorLiteral(red: 0.4882019353, green: 0.4882019353, blue: 0.4882019353, alpha: 1)
+    timerLabel.font = UIFont(name: "BinggraeTaom", size: 32)
     timerLabel.font = .systemFont(ofSize: 32, weight: .bold)
     timerLabel.textAlignment = .center
     
@@ -44,6 +45,7 @@ class CurrentScoreView: UIView {
     scoreLabel.text = "\(scoreText)"
     scoreLabel.textColor = .black
     scoreLabel.backgroundColor = .clear
+    scoreLabel.font = UIFont(name: "BinggraeTaom", size: 24)
     scoreLabel.font = .systemFont(ofSize: 24, weight: .regular)
     scoreLabel.textAlignment = .center
     

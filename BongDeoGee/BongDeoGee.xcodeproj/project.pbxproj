@@ -25,6 +25,7 @@
 		A6309A0623EC02080064633E /* RankProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6309A0523EC02080064633E /* RankProvider.swift */; };
 		A6309A0823EC027C0064633E /* RankModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6309A0723EC027C0064633E /* RankModel.swift */; };
 		A66C066A23EBFE7F0057A733 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A66C066923EBFE7F0057A733 /* GoogleService-Info.plist */; };
+		A6D96616247A50520066FFCB /* BinggraeTaom.otf in Resources */ = {isa = PBXBuildFile; fileRef = A6D96613247A4D340066FFCB /* BinggraeTaom.otf */; };
 		A6E0598823EC3CC700AD1092 /* 큰일났어요.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A6E0598723EC3CC700AD1092 /* 큰일났어요.mp3 */; };
 		A6E0598A23ED3AD600AD1092 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E0598923ED3AD600AD1092 /* TutorialViewController.swift */; };
 /* End PBXBuildFile section */
@@ -52,6 +53,7 @@
 		A6309A0523EC02080064633E /* RankProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankProvider.swift; sourceTree = "<group>"; };
 		A6309A0723EC027C0064633E /* RankModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankModel.swift; sourceTree = "<group>"; };
 		A66C066923EBFE7F0057A733 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A6D96613247A4D340066FFCB /* BinggraeTaom.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BinggraeTaom.otf; sourceTree = "<group>"; };
 		A6E0598723EC3CC700AD1092 /* 큰일났어요.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "큰일났어요.mp3"; sourceTree = "<group>"; };
 		A6E0598923ED3AD600AD1092 /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -157,6 +159,7 @@
 		A605CC2123E8359C00777436 /* Font */ = {
 			isa = PBXGroup;
 			children = (
+				A6D96613247A4D340066FFCB /* BinggraeTaom.otf */,
 			);
 			path = Font;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 				A6E0598823EC3CC700AD1092 /* 큰일났어요.mp3 in Resources */,
 				A605CC0623E6CED900777436 /* Assets.xcassets in Resources */,
 				A66C066A23EBFE7F0057A733 /* GoogleService-Info.plist in Resources */,
+				A6D96616247A50520066FFCB /* BinggraeTaom.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
