@@ -31,6 +31,8 @@ UI를 제외한 나머지 기능을 구현
   - Timer를 사용하여 일정 시간동안 두더지가 레벨 별 다른 속도로 나올 수 있도록 함 (레벨 별 난이도 조절)
   
   - UserDefaults에 사용자의 이름, 레벨 별 점수를 나타나도록 함
+  
+  - AVAudioPlayer 으로 배경 음악 삽입
 
 ## 1차 결과
 
@@ -38,8 +40,8 @@ UI를 제외한 나머지 기능을 구현
 
 ## 2차 결과
 
-발표 후 반응이 좋아 앱스토어에 출시까지 계획하고 완성도를 높였습니다.
+발표 후 반응이 좋아 앱스토어에 출시까지 계획하고 이미지와 이름을 변경하였습니다.
 
-<img src = "https://github.com/jisng/hackathon-2/blob/master/%EB%85%B9%ED%99%94/2%EC%B0%A8%20%EB%85%B9%ED%99%94.gif"></img>
+<img src = "https://github.com/jisng/hackathon-2/blob/master/Video/2Rec.gif"></img>
 
 
