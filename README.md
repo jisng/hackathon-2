@@ -32,16 +32,14 @@ UI를 제외한 나머지 기능을 구현
       - 게임 시간 30초
       - 두더지가 나타나는 속도 (레벨 별로 두더지가 나타는 속도가 다르다)
   - UserDefaults에 사용자의 이름, 레벨 별 점수를 나타나도록 함
+        - 레벨 별 점수는 
   - AVAudioPlayer 으로 배경 음악 삽입
 
-## 1차 결과
+## Clips
 
-![BongDeoGee 오후 7 07 10](https://user-images.githubusercontent.com/57229970/81282494-319ba700-9096-11ea-8949-ea200f48983a.gif)
+|                            해커톤                            |                   앱스토어                    |
+| :----------------------------------------------------------: | :-------------------------------------------: |
+| ![BongDeoGee 오후 7 07 10](https://user-images.githubusercontent.com/57229970/81282494-319ba700-9096-11ea-8949-ea200f48983a.gif) | <p><br/>  <img src="Video/2rec.gif"><br/></p> |
 
-## 2차 결과
-
-발표 후 반응이 좋아 앱스토어에 출시까지 계획하고 이미지와 이름을 변경하였습니다.
-
-<img src = "https://github.com/jisng/hackathon-2/blob/master/Video/2Rec.gif"></img>
 
 
