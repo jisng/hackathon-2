@@ -37,9 +37,11 @@ UI를 제외한 나머지 기능을 구현
 
 ## Clips
 
-|                            해커톤                            |                   앱스토어                    |
-| :----------------------------------------------------------: | :-------------------------------------------: |
-| ![BongDeoGee 오후 7 07 10](https://user-images.githubusercontent.com/57229970/81282494-319ba700-9096-11ea-8949-ea200f48983a.gif) | <p><br/>  <img src="Video/2Rec.gif"><br/></p> |
+<p>
+  <img src="Video/2Rec.gif" width="30%>
+</p>
+
+// ![BongDeoGee 오후 7 07 10](https://user-images.githubusercontent.com/57229970/81282494-319ba700-9096-11ea-8949-ea200f48983a.gif)
 
 
 
